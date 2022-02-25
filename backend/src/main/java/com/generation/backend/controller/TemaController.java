@@ -1,6 +1,5 @@
 package com.generation.backend.controller;
 
-
 import java.util.List;
 
 import javax.validation.Valid;
@@ -37,41 +36,37 @@ public class TemaController {
 
 	@GetMapping("/{id}")
 	public ResponseEntity<Tema> getById(@PathVariable Long id) {
-		return temaRepository.findById(id)
-			.map(resposta -> ResponseEntity.ok(resposta))
-			.orElse(ResponseEntity.notFound().build());
+		return temaRepository.findById(id).map(resposta -> ResponseEntity.ok(resposta))
+				.orElse(ResponseEntity.notFound().build());
 	}
 
-	@GetMapping("/tema/{tema}")
+	@GetMapping("/descricao/{descricao}")
 	public ResponseEntity<List<Tema>> getByDescricao(@PathVariable String descricao) {
 		return ResponseEntity.ok(temaRepository.findAllByDescricaoContainingIgnoreCase(descricao));
 	}
-	
+
 	@PostMapping
-	public ResponseEntity <Tema> postTema(@Valid @RequestBody Tema tema) {
+	public ResponseEntity<Tema> postTema(@Valid @RequestBody Tema tema) {
 		return ResponseEntity.status(HttpStatus.CREATED).body(temaRepository.save(tema));
-		
+
 	}
-	
+
 	@PutMapping
-    public ResponseEntity<Tema> putTema (@Valid @RequestBody Tema tema){
+	public ResponseEntity<Tema> putDescricao(@Valid @RequestBody Tema tema) {
 
-        return temaRepository.findById(tema.getId())
-            .map(resposta -> ResponseEntity.ok().body(temaRepository.save(tema)))
-            .orElse(ResponseEntity.notFound().build());
-	
-	}	
-	
-	@DeleteMapping("/{id}")
-    public ResponseEntity<?> deleteTema(@PathVariable Long id) {
+		return temaRepository.findById(tema.getId())
+				.map(resposta -> ResponseEntity.ok().body(temaRepository.save(tema)))
+				.orElse(ResponseEntity.notFound().build());
 
-        return temaRepository.findById(id)
-                .map(resposta -> {
-                    temaRepository.deleteById(id);
-                    return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
-                })
-                .orElse(ResponseEntity.notFound().build());
-	
-	
 	}
-}	
+
+	@DeleteMapping("/{id}")
+	public ResponseEntity<?> deleteTema(@PathVariable Long id) {
+
+		return temaRepository.findById(id).map(resposta -> {
+			temaRepository.deleteById(id);
+			return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+		}).orElse(ResponseEntity.notFound().build());
+
+	}
+}
