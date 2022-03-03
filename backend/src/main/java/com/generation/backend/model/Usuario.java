@@ -1,20 +1,13 @@
-package com.generation.backend.model;
+/*package com.generation.backend.model;
 
-import java.time.LocalDateTime;
-import java.util.List;
-
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
-
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 @Table(name = "tb_postagens")
@@ -23,29 +16,28 @@ public class Usuario {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
+
 	@NotBlank(message = "O atributo usuario é obrigatório!")
 	@Size(min = 8, max = 100, message = "O atributo usuario deve conter entre 8 e 100 caracteres!")
 	private String usuario;
-	
+
 	@NotBlank(message = "O atributo nome é obrigatório!")
 	@Size(min = 8, max = 100, message = "O atributo nome deve conter entre 8 e 100 caracteres!")
 	private String nome_completo;
-	
+
 	@NotBlank(message = "O atributo senha é obrigatório!")
 	@Size(min = 5, max = 100, message = "O atributo senha deve conter entre 8 e 100 caracteres!")
 	private String senha;
-	
+
 	@NotBlank(message = "O atributo tipo_usuario é obrigatório!")
-	@Size( max = 255, message = "O atributo tipo_usuario deve conter até 255 caracteres!")
+	@Size(max = 255, message = "O atributo tipo_usuario deve conter até 255 caracteres!")
 	private String tipo_usuario;
-	
-	@Size( max = 1000, message = "O atributo foto deve conter até 1000 caracteres!")
+
+	@Size(max = 1000, message = "O atributo foto deve conter até 1000 caracteres!")
 	private String foto;
-		
-	@OneToMany (mappedBy = "User", cascade = CascadeType.ALL)
-	@JsonIgnoreProperties("Tema")
-	private List <Postagem> postagem;
+
+	@OneToMany
+	private Postagem postagem;
 
 	public Long getId() {
 		return id;
@@ -95,12 +87,13 @@ public class Usuario {
 		this.foto = foto;
 	}
 
-	public List<Postagem> getPostagem() {
+	public Postagem getPostagem() {
 		return postagem;
 	}
 
-	public void setPostagem(List<Postagem> postagem) {
+	public void setPostagem(Postagem postagem) {
 		this.postagem = postagem;
 	}
-	
- }
+
+}
+*/
