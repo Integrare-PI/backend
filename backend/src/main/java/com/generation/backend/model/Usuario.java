@@ -1,5 +1,8 @@
-/*package com.generation.backend.model;
+package com.generation.backend.model;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -8,6 +11,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 @Table(name = "tb_postagens")
@@ -36,8 +41,9 @@ public class Usuario {
 	@Size(max = 1000, message = "O atributo foto deve conter até 1000 caracteres!")
 	private String foto;
 
-	@OneToMany
-	private Postagem postagem;
+	@OneToMany(mappedBy = "usuario", cascade = CascadeType.REMOVE)
+	@JsonIgnoreProperties("usuario")
+	private List<Postagem> postagem;
 
 	public Long getId() {
 		return id;
@@ -87,13 +93,12 @@ public class Usuario {
 		this.foto = foto;
 	}
 
-	public Postagem getPostagem() {
+	public List<Postagem> getPostagem() {
 		return postagem;
 	}
 
-	public void setPostagem(Postagem postagem) {
+	public void setPostagem(List<Postagem> postagem) {
 		this.postagem = postagem;
 	}
 
 }
-*/
