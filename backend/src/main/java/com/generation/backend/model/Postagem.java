@@ -22,21 +22,21 @@ public class Postagem {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
+
 	@NotBlank(message = "O atributo assunto é obrigatório!")
 	@Size(min = 5, max = 100, message = "O atributo assunto deve conter entre 5 e 100 caracteres!")
 	private String assunto;
-	
+
 	@NotBlank(message = "O atributo texto é obrigatório!")
-	@Size( max = 1000, message = "O atributo texto deve conter até 1000 caracteres!")
+	@Size(max = 1000, message = "O atributo texto deve conter até 1000 caracteres!")
 	private String texto_descricao;
-	
-	@Size( max = 1000, message = "O atributo anexo deve conter até 1000 caracteres!")
+
+	@Size(max = 1000, message = "O atributo anexo deve conter até 1000 caracteres!")
 	private String anexo;
-	
+
 	@UpdateTimestamp
 	private LocalDateTime data;
-	
+
 	@ManyToOne
 	@JsonIgnoreProperties("postagem")
 	private Tema tema;
@@ -45,7 +45,7 @@ public class Postagem {
 	@ManyToOne
 	@JsonIgnoreProperties("postagem")
 	private Usuario usuario;
-	
+
 	public Long getId() {
 		return id;
 	}
