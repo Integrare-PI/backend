@@ -19,6 +19,8 @@ import com.generation.backend.repository.UsuarioRepository;
 @Service
 public class UsuarioService {
 /*comentario*/
+	/*comentario2*/
+
     @Autowired
     private UsuarioRepository usuarioRepository;
 
