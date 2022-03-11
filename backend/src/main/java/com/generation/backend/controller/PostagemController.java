@@ -24,7 +24,6 @@ import com.generation.backend.repository.TemaRepository;
 @RestController
 @RequestMapping("/postagens")
 @CrossOrigin(origins = "*", allowedHeaders = "*")
-
 public class PostagemController {
 
 	@Autowired

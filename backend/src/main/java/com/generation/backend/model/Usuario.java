@@ -38,7 +38,8 @@ public class Usuario {
 	@NotBlank(message = "O atributo senha é obrigatório!")
 	@Size(min = 5, max = 100, message = "O atributo senha deve conter entre 8 e 100 caracteres!")
 	private String senha;
-
+	
+	@Schema(example = "Aluno/Professor")
 	@NotBlank(message = "O atributo tipo_usuario é obrigatório!")
 	@Size(max = 255, message = "O atributo tipo_usuario deve conter até 255 caracteres!")
 	private String tipo_usuario;
