@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.generation.backend.model.Postagem;
 import com.generation.backend.repository.PostagemRepository;
 import com.generation.backend.repository.TemaRepository;
+import com.generation.backend.service.PostagemService;
 
 @RestController
 @RequestMapping("/postagens")
@@ -32,6 +33,10 @@ public class PostagemController {
 	@Autowired
 	private TemaRepository temaRepository;
 
+	//add 13.04
+	@Autowired
+	private PostagemService postagemService;
+	
 	@GetMapping
 	public ResponseEntity<List<Postagem>> getAll() {
 		return ResponseEntity.ok(postagemRepository.findAll());
@@ -75,5 +80,14 @@ public class PostagemController {
 			return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
 		}).orElse(ResponseEntity.notFound().build());
 
+	}
+	
+	
+	//add 13.04
+	@PutMapping("/curtir/{id}")
+	public ResponseEntity<Postagem> curtirPostagemId (@PathVariable Long id){
+		return postagemService.curtir(id)
+				.map(resposta-> ResponseEntity.ok(resposta))
+				.orElse(ResponseEntity.badRequest().build());
 	}
 }

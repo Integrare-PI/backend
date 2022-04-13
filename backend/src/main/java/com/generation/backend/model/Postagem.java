@@ -2,6 +2,7 @@ package com.generation.backend.model;
 
 import java.time.LocalDateTime;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -33,7 +34,19 @@ public class Postagem {
 
 	@Size(max = 1000, message = "O atributo anexo deve conter até 1000 caracteres!")
 	private String anexo;
+	
+	//add 13.04
+	@Size(max = 1000, message = "O atributo anexo deve conter até 1000 caracteres!")
+	private String video;
+	
+	//add 13.04
+	@Size(max = 1000, message = "O atributo anexo deve conter até 1000 caracteres!")
+	private String resposta;
 
+	//add 13.04
+	@Column(columnDefinition = "integer default 0")
+	private int curtidas;
+	
 	@UpdateTimestamp
 	private LocalDateTime data;
 
@@ -100,6 +113,30 @@ public class Postagem {
 
 	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
+	}
+
+	public String getVideo() {
+		return video;
+	}
+
+	public void setVideo(String video) {
+		this.video = video;
+	}
+
+	public String getResposta() {
+		return resposta;
+	}
+
+	public void setResposta(String resposta) {
+		this.resposta = resposta;
+	}
+
+	public int getCurtidas() {
+		return curtidas;
+	}
+
+	public void setCurtidas(int curtidas) {
+		this.curtidas = curtidas;
 	}
 
 	
